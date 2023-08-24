@@ -10,7 +10,7 @@ The output of this should be treated as a convenient starting point and not the 
 This script has a single external dependency benedict. To install it run:
 
 ```
-$ pip install benedict
+$ pip install python-benedict
 ```
 
 ## Usage

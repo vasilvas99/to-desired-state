@@ -124,6 +124,12 @@ def add_devices(config, devices_list):
     for device in devices_list:
         add_key_value_opt(config, "device", flatten_device(device))
 
+def add_extra_hosts(config, hosts_list):
+    if not hosts_list:
+        return
+    for extra_hosts_entry in hosts_list:
+        add_key_value_opt(config, "host", extra_hosts_entry)
+    
 
 desired_state_config = []
 
@@ -146,7 +152,7 @@ add_key_value_opt(
 )
 add_ports(desired_state_config, manifest_dict.get(["host_config", "port_mappings"]))
 add_devices(desired_state_config, manifest_dict.get(["host_config", "devices"]))
-
+add_extra_hosts(desired_state_config, manifest_dict.get(["host_config", "extra_hosts"]))
 add_key_value_opt(
     desired_state_config,
     k="restartPolicy",
