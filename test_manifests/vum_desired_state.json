@@ -7,28 +7,32 @@
         "config": [],
         "components": [
           {
-            "id": "databroker",
-            "version": "0.3",
+            "id": "vum",
+            "version": "main-1d8dca55a755c4b3c7bc06eabfa06ad49e068a48",
             "config": [
               {
                 "key": "image",
-                "value": "ghcr.io/eclipse/kuksa.val/databroker:0.3"
+                "value": "ghcr.io/eclipse-leda/leda-contrib-vehicle-update-manager/vehicleupdatemanager:main-1d8dca55a755c4b3c7bc06eabfa06ad49e068a48"
               },
               {
                 "key": "mount",
-                "value": "/data/usr/fms/databroker:/etc/databroker:rprivate"
+                "value": "/proc:/proc:shared"
               },
               {
                 "key": "env",
-                "value": "RUST_LOG=info"
+                "value": "SELF_UPDATE_TIMEOUT=30m"
               },
               {
                 "key": "env",
-                "value": "KUKSA_DATA_BROKER_METADATA_FILE=/etc/databroker/vss.json"
+                "value": "SELF_UPDATE_ENABLE_REBOOT=true"
               },
               {
                 "key": "env",
-                "value": "vehicle_data_broker=debug"
+                "value": "THINGS_CONN_BROKER=tcp://mosquitto:1883"
+              },
+              {
+                "key": "env",
+                "value": "THINGS_FEATURES=ContainerOrchestrator"
               },
               {
                 "key": "privileged",
@@ -37,10 +41,6 @@
               {
                 "key": "network",
                 "value": "bridge"
-              },
-              {
-                "key": "port",
-                "value": "localhost:55555:30555-30555/tcp"
               },
               {
                 "key": "restartPolicy",
