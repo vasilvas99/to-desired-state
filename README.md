@@ -5,7 +5,7 @@ The output of this should be treated as a convenient starting point and not the 
 (e.g. you might wish to add more containers there/remove propreties. specify other domains, etc).
 
 
-# Installation
+## Installation
 
 This script has a single external dependency benedict. To install it run:
 
@@ -13,7 +13,7 @@ This script has a single external dependency benedict. To install it run:
 $ pip install benedict
 ```
 
-# Usage
+## Usage
 
 The script takes as its first and only argument the path to the Kanto container management style manifest.
 
@@ -26,6 +26,18 @@ to a desired state manifest, re-mapping the container configuration options.
 Note: the resulting file should be treated as a starting point (partially filled-in template) only.
 ```
 
-# Sample results
+## Sample results
 
 Sample results can be found in the `test_manifests` directory.
+
+# Merge container desired state
+
+Because the containers desired state can be quite verbose and copying from the generated json files can be cumborsome the `merge_desired_states.py` takes a list 
+of `[NAME]_desired_state.json` files and merges them in a single desired state document.
+
+## Usage
+
+```shell
+$ ./merge_desired_states.py --help
+Usage merge_desired_states.py [PATH_TO_DESIRED_STATE-1] [PATH_TO_DESIRED_STATE-2] ... [PATH_TO_DESIRED_STATE-N]
+```
