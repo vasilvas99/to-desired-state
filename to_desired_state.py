@@ -27,16 +27,22 @@ desired_state_jsons = r"""
 """
 desired_state_manifest = json.loads(desired_state_jsons)
 
+
 def print_help():
     print(f"Usage: {sys.argv[0]} [PATH_TO_KANTO_MANIFEST]\n")
     print("Converts a Kanto Container Management-style manifest")
-    print("to a desired state manifest, re-mapping the container configuration options.")
-    print("Note: the resulting file should be treated as a starting point (partially filled-in template) only.")
+    print(
+        "to a desired state manifest, re-mapping the container configuration options."
+    )
+    print(
+        "Note: the resulting file should be treated as a starting point (partially filled-in template) only."
+    )
+
 
 if len(sys.argv) != 2:
     print_help()
     exit(-1)
-    
+
 if sys.argv[1] == "-h" or sys.argv[1] == "--help":
     print_help()
     exit(0)
@@ -124,12 +130,13 @@ def add_devices(config, devices_list):
     for device in devices_list:
         add_key_value_opt(config, "device", flatten_device(device))
 
+
 def add_extra_hosts(config, hosts_list):
     if not hosts_list:
         return
     for extra_hosts_entry in hosts_list:
         add_key_value_opt(config, "host", extra_hosts_entry)
-    
+
 
 desired_state_config = []
 
@@ -189,7 +196,6 @@ add_key_value_opt(
     k="logMode",
     v=manifest_dict.get(["host_config", "log_config", "mode_config", "mode"]),
 )
-
 add_key_value_opt(
     desired_state_config,
     k="memory",
@@ -209,6 +215,7 @@ add_key_value_opt(
 add_key_value_opt(
     desired_state_config, k="terminal", v=manifest_dict.get(["io_config", "tty"])
 )
+
 add_key_value_opt(
     desired_state_config,
     k="interactive",
@@ -221,18 +228,20 @@ image_ref = manifest_dict["image"]["name"]
 image_ref_split = image_ref.rsplit(":", maxsplit=1)
 
 if len(image_ref_split) == 1:
-    version = "latest" # use latest as default version
+    version = "latest"  # use latest as default version
 else:
     version = image_ref_split[-1]
-    
+
 desired_state_manifest["payload"]["domains"][0]["components"][0]["id"] = name
 desired_state_manifest["payload"]["domains"][0]["components"][0]["version"] = version
-desired_state_manifest["payload"]["domains"][0]["components"][0]["config"] = desired_state_config
+desired_state_manifest["payload"]["domains"][0]["components"][0][
+    "config"
+] = desired_state_config
 
 output_file_name = f"{manifest_file.stem}_desired_state{manifest_file.suffix}"
 
-with open(manifest_file.parent/output_file_name, "w") as f:
+with open(manifest_file.parent / output_file_name, "w") as f:
     json.dump(desired_state_manifest, f, indent=2)
-    
+
 print(f"Saved as {manifest_file.parent/output_file_name}.")
 print("WARNING: This is file should be used as a starting template only!")
