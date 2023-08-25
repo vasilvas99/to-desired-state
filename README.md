@@ -1,4 +1,4 @@
-# TO-DESIRED-STATE converter
+# To-desired-state-converter
 
 Simple script that takes a Kanto Container Management and converts it to the desired state format.
 The output of this should be treated as a convenient starting point and not the final desired state
