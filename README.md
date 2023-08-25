@@ -34,6 +34,7 @@ of `[NAME]_desired_state.json` files and merges them in a single desired state d
 ## Usage
 
 ```shell
+$ ./merge_desired_states.py --help
 Usage ./merge_desired_states.py [PATH_TO_DESIRED_STATE-1] [PATH_TO_DESIRED_STATE-2] ... [PATH_TO_DESIRED_STATE-N]
 
 Merges desired state documents in a single one ready to be posted to the kanto update manager topic.
