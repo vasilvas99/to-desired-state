@@ -9,7 +9,7 @@ The output of this should be treated as a convenient starting point and not the 
 
 This script has a single external dependency benedict. To install it run:
 
-```
+```shell
 $ pip install python-benedict
 ```
 
@@ -17,7 +17,7 @@ $ pip install python-benedict
 
 The script takes as its first and only argument the path to the Kanto container management style manifest.
 
-```
+```shell
 $ python3 to_desired_state.py --help
 Usage: to_desired_state.py [PATH_TO_KANTO_MANIFEST]
 
