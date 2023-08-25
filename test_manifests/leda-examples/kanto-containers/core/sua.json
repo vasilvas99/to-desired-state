@@ -1,0 +1,64 @@
+{
+    "container_id": "sua",
+    "container_name": "sua",
+    "image": {
+        "name": "ghcr.io/eclipse-leda/leda-contrib-self-update-agent/self-update-agent:build-177"
+    },
+    "mount_points": [
+        {
+            "source": "/var/run/dbus/system_bus_socket",
+            "destination": "/var/run/dbus/system_bus_socket",
+            "propagation_mode": "shared"
+        },
+        {
+            "source": "/data/selfupdates",
+            "destination": "/data/selfupdates",
+            "propagation_mode": "rprivate"
+        },
+        {
+            "source" : "/etc/os-release",
+            "destination": "/etc/os-release",
+            "propagation_mode": "rprivate"
+        }
+     ],
+    "host_config": {
+        "devices": [],
+        "network_mode": "bridge",
+        "privileged": false,
+        "restart_policy": {
+            "maximum_retry_count": 0,
+            "retry_timeout": 0,
+            "type": "unless-stopped"
+        },
+        "runtime": "io.containerd.runc.v2",
+        "extra_hosts": [
+            "mosquitto:host_ip"
+        ],
+        "port_mappings": [
+            {
+              "protocol": "tcp",
+              "container_port": 50052,
+              "host_ip": "localhost",
+              "host_port": 30052,
+              "host_port_end": 30052
+            }
+        ],
+        "log_config": {
+            "driver_config": {
+                "type": "json-file",
+                "max_files": 2,
+                "max_size": "1M",
+                "root_dir": ""
+            },
+            "mode_config": {
+                "mode": "blocking",
+                "max_buffer_size": ""
+            }
+        },
+        "resources": null
+    },
+    "io_config": {
+        "open_stdin": false,
+        "tty": false
+    }
+}

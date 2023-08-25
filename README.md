@@ -41,3 +41,9 @@ of `[NAME]_desired_state.json` files and merges them in a single desired state d
 $ ./merge_desired_states.py --help
 Usage merge_desired_states.py [PATH_TO_DESIRED_STATE-1] [PATH_TO_DESIRED_STATE-2] ... [PATH_TO_DESIRED_STATE-N]
 ```
+
+To merge over an entire directory (called `desired_states` for example) you can use the following line:
+
+```shell
+$ ./merge_desired_states.py $(python3 -c 'from glob import glob; print(" ".join(glob("desired_states/*")))')
+```

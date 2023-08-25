@@ -52,9 +52,21 @@ manifest_file = Path(sys.argv[1])
 with open(manifest_file.resolve(True)) as fh:
     manifest_dict = benedict(json.load(fh))
 
+# all values in desired states are strings
+def str_repr_val(v):
+    if isinstance(v, bool):
+        return str(v).lower()
+    elif isinstance(v, int):
+        return str(v)
+    elif isinstance(v, float):
+        return str(v) # ? maybe
+    elif isinstance(v, str):
+        return v
+    else:
+        raise ValueError("Unsupported value")
 
 def add_key_value(config, k, v):
-    config.append({"key": k, "value": v})
+    config.append({"key": k, "value": str_repr_val(v)})
 
 
 def add_key_value_opt(config, k, v):
