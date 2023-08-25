@@ -30,7 +30,7 @@ Note: the resulting file should be treated as a starting point (partially filled
 
 Sample results can be found in the `test_manifests` directory.
 
-# Merge container desired state
+# Merge desired state documents
 
 Because the containers desired state can be quite verbose and copying from the generated json files can be cumborsome the `merge_desired_states.py` takes a list 
 of `[NAME]_desired_state.json` files and merges them in a single desired state document.
