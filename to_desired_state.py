@@ -65,7 +65,7 @@ def str_repr_val(v):
     elif isinstance(v, str):
         return v
     else:
-        raise ValueError("Unsupported value")
+        raise ValueError(f"Unsupported value: {v}")
 
 
 def add_key_value(config, k, v):
