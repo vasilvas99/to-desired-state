@@ -10,7 +10,7 @@ from pathlib import Path
 
 def print_help():
     print(
-        f"Usage {sys.argv[0]} [PATH_TO_DESIRED_STATE-1] [PATH_TO_DESIRED_STATE-2] ... [PATH_TO_DESIRED_STATE-N]\n"
+        f"Usage {sys.argv[0]} [PATH_TO_DESIRED_STATE-1] [PATH_TO_DESIRED_STATE-2] ... [PATH_TO_DESIRED_STATE-N]\n\n"
         f"Merges desired state documents in a single one ready to be posted to the kanto update manager topic.\n"
         f"Note: Paths CAN be globs."
     )
