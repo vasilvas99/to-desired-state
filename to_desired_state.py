@@ -3,6 +3,7 @@
 import json
 import sys
 from pathlib import Path
+
 from benedict import benedict
 
 desired_state_jsons = r"""
@@ -52,6 +53,7 @@ manifest_file = Path(sys.argv[1])
 with open(manifest_file.resolve(True)) as fh:
     manifest_dict = benedict(json.load(fh))
 
+
 # all values in desired states are strings
 def str_repr_val(v):
     if isinstance(v, bool):
@@ -59,11 +61,12 @@ def str_repr_val(v):
     elif isinstance(v, int):
         return str(v)
     elif isinstance(v, float):
-        return str(v) # ? maybe
+        return str(v)  # ? maybe
     elif isinstance(v, str):
         return v
     else:
         raise ValueError("Unsupported value")
+
 
 def add_key_value(config, k, v):
     config.append({"key": k, "value": str_repr_val(v)})

@@ -38,12 +38,12 @@ of `[NAME]_desired_state.json` files and merges them in a single desired state d
 ## Usage
 
 ```shell
-$ ./merge_desired_states.py --help
-Usage merge_desired_states.py [PATH_TO_DESIRED_STATE-1] [PATH_TO_DESIRED_STATE-2] ... [PATH_TO_DESIRED_STATE-N]
+Usage ./merge_desired_states.py [PATH_TO_DESIRED_STATE-1] [PATH_TO_DESIRED_STATE-2] ... [PATH_TO_DESIRED_STATE-N]
+Merges desired state documents in a single one ready to be posted to the kanto update manager topic.Note: Paths CAN be globs.
 ```
 
-To merge over an entire directory (called `desired_states` for example) you can use the following line:
+To merge over an entire directory (called `desired_states` for example) you can use a glob:
 
 ```shell
-$ ./merge_desired_states.py $(python3 -c 'from glob import glob; print(" ".join(glob("desired_states/*")))')
+$ ./merge_desired_states.py desired_states/*.json
 ```
