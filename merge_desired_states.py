@@ -30,14 +30,18 @@ for p in paths:
     with open(p) as fh:
         parsed_manifests.append(json.load(fh))
 
-# use the first manifest as base
-base = parsed_manifests[1]
-parsed_manifests = parsed_manifests[1:]
+parsed_manifests = parsed_manifests
+
+all_ctrs = []
 
 for manifest in parsed_manifests:
-    base_ctrs = get_containers(base)
-    base_ctrs += get_containers(manifest)
+    all_ctrs += get_containers(manifest)
+
+# use the first manifest as base
+for domain in  parsed_manifests[1]["payload"]["domains"]:
+    if domain["id"] == "containers":
+        domain["components"] = all_ctrs
 
 
 with open("merged_desired_state.json", "w") as fh:
-    json.dump(base, fh, indent=2)
+    json.dump(parsed_manifests[1], fh, indent=2)
