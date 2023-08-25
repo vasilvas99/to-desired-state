@@ -26,10 +26,6 @@ to a desired state manifest, re-mapping the container configuration options.
 Note: the resulting file should be treated as a starting point (partially filled-in template) only.
 ```
 
-## Sample results
-
-Sample results can be found in the `test_manifests` directory.
-
 # Merge desired state documents
 
 Because the containers desired state can be quite verbose and copying from the generated json files can be cumborsome the `merge_desired_states.py` takes a list 
