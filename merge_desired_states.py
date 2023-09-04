@@ -26,7 +26,7 @@ if sys.argv[1] == "-h" or sys.argv[1] == "--help":
 
 
 expanded_globs = (glob(g) for g in sys.argv[1:])
-paths = (Path(p).resolve(True) for p in chain(*expanded_globs))
+paths = [Path(p).resolve(True) for p in chain(*expanded_globs)]
 
 paths_str = "\n".join(map(lambda p: str(p), paths))
 print(f"Merging:\n{paths_str}")
@@ -44,8 +44,6 @@ parsed_manifests = []
 for p in paths:
     with open(p) as fh:
         parsed_manifests.append(json.load(fh))
-
-parsed_manifests = parsed_manifests
 
 domain_components = defaultdict(lambda: [])
 domain_configs = defaultdict(lambda: [])
